@@ -1,0 +1,236 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+
+    <!--NOTES ON WHAT I'VE LEARNED:
+
+        -in the future, it may be wiser to use toggleClass() along with active and notActive classes to toggle backgorun colours (and really most/all other css properties...). Using my toggleBGColour() function is fine for now but it is too specific to this problem
+    -->
+
+
+
+
+    <!--favicon!-->
+    <!--icon from google's open source images library-->
+    <link rel="shortcut icon" href="images/favicon.ico">
+    <link rel="icon" href="images/favicon.ico" type="image/x-icon">
+
+    <meta charset="UTF-8">
+    <meta http-equiv="Content-type" content="text/html; charset=utf-8" />
+    <meta name="viewport" content="width=device-width, initial-scale=1" />
+
+    <link rel="stylesheet" href="http://ajax.googleapis.com/ajax/libs/jqueryui/1.11.4/themes/smoothness/jquery-ui.css">
+
+    <style type="text/css">
+
+        /*Styles go here!*/
+
+        #greyBanner{
+            margin:0;
+            padding:0;
+            height: 50px;
+            background-color: #C0C0C0;
+            border-radius: 15px;
+        }
+
+        #bannerText{
+            margin: 0;
+            padding-left: 10px;
+            vertical-align: center;
+            line-height: 50px;
+            float: left;
+            font-family: monospace;
+            font-size: 1.7em;
+            padding-right: 100px;
+            color: #333;
+        }
+
+        #runButton{
+            height: 50px;
+            width: 100px;
+            font-size: 1.5em;
+            border-radius: 15px;
+            background-color: #0095FF;
+            color: #333;
+            font-family: monospace;
+        }
+
+        #displays{
+            padding-top: 15px;
+            margin:0;
+            padding:0;
+            height: 700px;
+            background-color: white;
+            border-radius: 15px;
+            border-color: #0095FF;
+            border-width: 2px;
+            border-style: solid;
+
+        }
+
+        #separator{
+            display: block;
+            margin: 5px 0;
+            content: " ";
+        }
+
+        .field{
+            float: left;
+            margin: 5px;
+        }
+
+        ul {
+            text-align: center;
+            height: 50px;
+            width:fit-content;
+            text-align: center;
+            border-radius: 15px;
+            list-style-type: none;
+            margin: auto;
+            padding: 0;
+            overflow: hidden;
+            background-color: #333;
+            font-family: "Courier New", Courier, monospace;
+            line-height: 25px;
+            float: left;
+            margin-right:100px;
+        }
+
+        li {
+            float: left;
+        }
+
+        li a {
+            display: block;
+            color: white;
+            text-align: center;
+            padding: 14px 16px;
+            text-decoration: none;
+            height: 50px;
+        }
+
+        a:hover:not(.active) {
+            background-color: #111;
+        }
+
+        /*TODO: finish this*/
+        .active a:hover {
+            background-color: red;
+        }
+
+        /*a:hover:(.active){*/
+
+        /*}*/
+
+        .active {
+            background-color:#0095FF;
+        }
+
+
+    </style>
+
+
+    <title>Web Code Player</title>
+</head>
+
+<body>
+
+    <div id="greyBanner">
+        <h3 id="bannerText">Web Code Player</h3>
+        <ul>
+            <li id="toggleHTMLField" class="active"><a href="#home">HTML</a></li>
+            <li id="toggleCSSField"><a >CSS</a></li>
+            <li id="toggleJSField"><a >JS</a></li>
+            <li id="toggleResultField"><a >Result</a></li>
+        </ul>
+
+        <button id="runButton"><strong> Run </strong></button>
+    </div>
+
+    <br id="separator">
+
+    <div id="displays">
+        <!--contains HTML, CSS, JS and results fields-->
+
+        <div hidden="true" id="fieldHTML" class="field">
+            fieldHTML
+        </div>
+
+        <div hidden="true" id="fieldCSS" class="field">
+            fieldCSS
+        </div>
+
+        <div hidden="true" id="fieldJS" class="field">
+            fieldJS
+        </div>
+
+        <div hidden="true" id="fieldResult" class="field">
+            fieldResult
+        </div>
+
+    </div>
+
+    <!--jQuery host-->
+    <script type="text/javascript" src="https://code.jquery.com/jquery-latest.min.js"> </script>
+    <!-- jQuery UI host -->
+    <script type="text/javascript" src="https://ajax.googleapis.com/ajax/libs/jqueryui/1.11.4/jquery-ui.min.js"></script>
+
+    <script type="text/javascript">
+
+        //run button
+        $("#runButton").click(function () {
+            alert("Clicked run button!")
+        })
+        
+
+        //fields bar
+        $("#toggleHTMLField").click(function () {
+
+            $("#fieldHTML").toggle("fast", toggleBGColour(this))
+
+        })
+
+        $("#toggleCSSField").click(function () {
+
+            $("#fieldCSS").toggle("fast", toggleBGColour(this))
+
+        })
+
+        $("#toggleJSField").click(function () {
+
+            $("#fieldJS").toggle("fast", toggleBGColour(this))
+
+        })
+
+        $("#toggleResultField").click(function () {
+
+            $("#fieldResult").toggle("fast", toggleBGColour(this))
+
+        })
+
+        //helper functions
+
+        //toggles background colour of element from black to grey
+        function toggleBGColour(element){
+
+//            alert("element's bg color = " + $(element).css("background-color"))
+
+            //if blue/enabled, disable it (make it black)
+            //for some reason i need to compare the background-color css property to its RGB equivalent (#0095FF will not work)
+            if ($(element).css("background-color") == "rgb(0, 149, 255)"){
+
+                //console.log("element's bg color should be BLUE, is = " + $(element).css("background-color"))
+                $(element).css("background-color", "#333")
+            }
+            //otherwise enable it (make it blue)
+            else{
+
+                //console.log("element's bg color should be BLACK, is = " + $(element).css("background-color"))
+                $(element).css("background-color", "#0095FF")
+            }
+        }
+
+    </script>
+
+</body>
+</html>
