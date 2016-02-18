@@ -5,8 +5,12 @@
     <!--NOTES ON WHAT I'VE LEARNED:
 
         -in the future, it may be wiser to use toggleClass() along with active and notActive classes to toggle backgorun colours (and really most/all other css properties...). Using my toggleBGColour() function is fine for now but it is too specific to this problem
+        -don't use <a> for things that are not links.........
+        -for some reason, you can't include toggleClass() as a callback from toggle()
     -->
 
+    <!--TODOs:-->
+    <!-- -refactor out the <a></a> where -->
 
 
 
@@ -26,6 +30,7 @@
         /*Styles go here!*/
 
         #greyBanner{
+            min-width: 1280px;
             margin:0;
             padding:0;
             height: 50px;
@@ -53,9 +58,15 @@
             background-color: #0095FF;
             color: #333;
             font-family: monospace;
+            color: white;
+        }
+
+        #runButton:hover{
+            background-color: #006AB5;
         }
 
         #displays{
+            min-width: 1280px;
             padding-top: 15px;
             margin:0;
             padding:0;
@@ -65,7 +76,6 @@
             border-color: #0095FF;
             border-width: 2px;
             border-style: solid;
-
         }
 
         #separator{
@@ -76,7 +86,12 @@
 
         .field{
             float: left;
+            border-radius: 15px;
             margin: 5px;
+            min-width: 300px;
+            height: fit-content;
+            background-color: #C0C0C0;
+            padding: 5px;
         }
 
         ul {
@@ -113,17 +128,13 @@
             background-color: #111;
         }
 
-        /*TODO: finish this*/
         .active a:hover {
             background-color: #006AB5;
         }
 
-
-
         .active {
             background-color:#0095FF;
         }
-
 
     </style>
 
@@ -136,13 +147,13 @@
     <div id="greyBanner">
         <h3 id="bannerText">Web Code Player</h3>
         <ul>
-            <li id="toggleHTMLField" ><a>HTML</a></li>
+            <li id="toggleHTMLField"><a>HTML</a></li>
             <li id="toggleCSSField"><a >CSS</a></li>
             <li id="toggleJSField"><a >JS</a></li>
             <li id="toggleResultField"><a >Result</a></li>
         </ul>
 
-        <button id="runButton"><strong> Run </strong></button>
+        <button id="runButton"> Run </button>
     </div>
 
     <br id="separator">
@@ -214,9 +225,14 @@
 
         })
 
+
+
+
+
+
         //helper functions
 
-        //toggles background colour of element from black to grey
+        //NO LONGER NEEDED: toggles background colour of element from black to grey
         function toggleBGColour(element){
 
 //            alert("element's bg color = " + $(element).css("background-color"))
