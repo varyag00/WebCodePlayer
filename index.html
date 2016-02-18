@@ -115,12 +115,10 @@
 
         /*TODO: finish this*/
         .active a:hover {
-            background-color: red;
+            background-color: #006AB5;
         }
 
-        /*a:hover:(.active){*/
 
-        /*}*/
 
         .active {
             background-color:#0095FF;
@@ -138,7 +136,7 @@
     <div id="greyBanner">
         <h3 id="bannerText">Web Code Player</h3>
         <ul>
-            <li id="toggleHTMLField" class="active"><a href="#home">HTML</a></li>
+            <li id="toggleHTMLField" ><a>HTML</a></li>
             <li id="toggleCSSField"><a >CSS</a></li>
             <li id="toggleJSField"><a >JS</a></li>
             <li id="toggleResultField"><a >Result</a></li>
@@ -186,25 +184,33 @@
         //fields bar
         $("#toggleHTMLField").click(function () {
 
-            $("#fieldHTML").toggle("fast", toggleBGColour(this))
+//            $("#fieldHTML").toggle("fast", toggleBGColour(this))
+
+            $("#fieldHTML").toggle("fast")
+            $(this).toggleClass("active")
+
+
 
         })
 
         $("#toggleCSSField").click(function () {
 
-            $("#fieldCSS").toggle("fast", toggleBGColour(this))
+            $("#fieldCSS").toggle("fast")
+            $(this).toggleClass("active")
 
         })
 
         $("#toggleJSField").click(function () {
 
-            $("#fieldJS").toggle("fast", toggleBGColour(this))
+            $("#fieldJS").toggle("fast")
+            $(this).toggleClass("active")
 
         })
 
         $("#toggleResultField").click(function () {
 
-            $("#fieldResult").toggle("fast", toggleBGColour(this))
+            $("#fieldResult").toggle("fast")
+            $(this).toggleClass("active")
 
         })
 
