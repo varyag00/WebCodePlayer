@@ -10,7 +10,7 @@
     -->
 
     <!--TODOs:-->
-    <!-- -refactor out the <a></a> where -->
+    <!-- -refactor out the <a></a> where possible-->
 
 
 
@@ -50,7 +50,7 @@
             color: #333;
         }
 
-        #runButton{
+        #playButton{
             height: 50px;
             width: 100px;
             font-size: 1.5em;
@@ -61,7 +61,7 @@
             color: white;
         }
 
-        #runButton:hover{
+        #playButton:hover{
             background-color: #006AB5;
         }
 
@@ -70,6 +70,8 @@
             padding-top: 15px;
             margin:0;
             padding:0;
+            /*min-height: 700px;*/
+            /*height: 100%;*/
             height: 700px;
             background-color: white;
             border-radius: 15px;
@@ -84,14 +86,36 @@
             content: " ";
         }
 
+        #result{
+            width: 295px;
+            background-color: white;
+        }
+
+        .inputField{
+            width: 98%;
+            height: 96%;
+            border-radius: 15px;
+            font-size: 1.1em;
+            font-family: monospace;
+            resize: none;
+        }
+
         .field{
             float: left;
             border-radius: 15px;
             margin: 5px;
             min-width: 300px;
-            height: fit-content;
+            height: 97%;
             background-color: #C0C0C0;
             padding: 5px;
+            /*display: table-cell;*/
+        }
+
+        .fieldLabel{
+            float: right;
+            font-family: monospace;
+            font-size: 1.3em;
+            padding-right: 5px;
         }
 
         ul {
@@ -153,7 +177,7 @@
             <li id="toggleResultField"><a >Result</a></li>
         </ul>
 
-        <button id="runButton"> Run </button>
+        <button id="playButton"> Play </button>
     </div>
 
     <br id="separator">
@@ -162,19 +186,28 @@
         <!--contains HTML, CSS, JS and results fields-->
 
         <div hidden="true" id="fieldHTML" class="field">
-            fieldHTML
+            <label for="inputHTML" class="fieldLabel">HTML</label>
+            <br>
+            <textarea id="inputHTML" class="inputField"> </textarea>
         </div>
 
         <div hidden="true" id="fieldCSS" class="field">
-            fieldCSS
+            <label for="inputCSS" class="fieldLabel">CSS</label>
+            <br>
+            <textarea id="inputCSS" class="inputField"> </textarea>
         </div>
 
         <div hidden="true" id="fieldJS" class="field">
-            fieldJS
+            <label for="inputJS" class="fieldLabel">JS</label>
+            <br>
+            <textarea id="inputJS" class="inputField"> </textarea>
         </div>
 
         <div hidden="true" id="fieldResult" class="field">
-            fieldResult
+            <label for="result" class="fieldLabel">Result</label>
+            <br>
+            <!--<textarea readonly id="result" class="inputField"> </textarea>-->
+            <iframe id="result" class="inputField"></iframe>
         </div>
 
     </div>
@@ -187,8 +220,20 @@
     <script type="text/javascript">
 
         //run button
-        $("#runButton").click(function () {
-            alert("Clicked run button!")
+        $("#playButton").click(function () {
+            //alert("Clicked play button!")
+
+            //Read all the fields, create a webpage and let it rip
+
+            //load html into result
+
+            var myHTML = $("#inputHTML").val()
+            var myCSS =  $("#inputCSS").val()
+
+            //alert("<html>" + openScript + myCSS  + closeScript + myHTML + "<\/html>")
+
+            $("#result").contents().find("html").html("<style>" + myCSS  + "<\/style>" + myHTML)
+
         })
         
 
