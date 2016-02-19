@@ -229,13 +229,19 @@
 
             var myHTML = $("#inputHTML").val()
             var myCSS =  $("#inputCSS").val()
+            var myJS = $("#inputJS").val()
 
             //alert("<html>" + openScript + myCSS  + closeScript + myHTML + "<\/html>")
 
             $("#result").contents().find("html").html("<style>" + myCSS  + "<\/style>" + myHTML)
 
+            //eval inputted js code
+
+            //NOTE: it is PROBABLY a terrible idea to let people run random js code on my server, so when I deploy this I'll turn off JS input until I am confident with the security measures i've set
+            document.getElementById("result").contentWindow.eval(myJS)
+
+
         })
-        
 
         //fields bar
         $("#toggleHTMLField").click(function () {
